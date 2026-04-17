@@ -1,0 +1,12 @@
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\BuggyBackend.exe
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\appsettings.Development.json
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\appsettings.json
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\BuggyBackend.dll
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\BuggyBackend.deps.json
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\BuggyBackend.runtimeconfig.json
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\BuggyBackend.pdb
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\Microsoft.OpenApi.dll
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\littl\OneDrive\Documents\Academy\CodeStack Level4\BuggyBackend\bin\Release\net9.0\publish\Swashbuckle.AspNetCore.SwaggerUI.dll

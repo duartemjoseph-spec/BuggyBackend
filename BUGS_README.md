@@ -52,7 +52,7 @@ Fix: Remove `catch (ArgumentNullException ex)
 
 Bug #6 Program.cs line 9
 Missing scope for IBookRepository in program.cs file
-Fix: Add `builder.Services.AddSingleton<IBookRepository, BookRepository>();`
+Fix: Add `builder.Services.AddScoped<IBookRepository, BookRepository>();`
 
 Bug #7 BookRepository.cs Line 37
 Missing extra = that will change from assigning to comparing
@@ -66,14 +66,14 @@ Bug #9 MemberService.cs Line 87
 Missing = in the conditional to check for 0
 Fix: `(id <= 0)`
 
- Bug #10 LibraryService.cs Line 19
+ Bug #10 LibraryService.cs Line 46
 Missing check so the user is not able to borrow the same book again.
 Fix: Add `if (member.BorrowedBookIds.Contains(bookId))
 {
     throw new InvalidOperationException("Member already borrowed this book");
 }`
 
- Bug #11 MemberRepository.cs Line 79
+ Bug #11 MemberRepository.cs Line 77
 Add a check so the same book can not be applied to a member.
 Fix: Add if statement `
 if (!member.BorrowedBookIds.Contains(bookId))
@@ -81,7 +81,7 @@ if (!member.BorrowedBookIds.Contains(bookId))
     member.BorrowedBookIds.Add(bookId);
 }`
 
- Bug #12 BookService.cs Line 79
+ Bug #12 BookService.cs Line 87
 Adjust DeleteBook so it doesn't delete a book that has an active transaction open
 Fix: `var hasActiveLoans = _transactionRepository
     .GetActiveTransactions()
@@ -92,7 +92,7 @@ if (hasActiveLoans)
     throw new InvalidOperationException("Cannot delete a book with active loans");
 }`
 
- Bug #13 MemberService.cs Line 55
+ Bug #13 MemberService.cs Line 67
 Add a check to UpdateMember so the user cannot update their email to an email that is tied to another user
 Fix: `var memberWithSameEmail = _memberRepository.GetByEmail(member.Email);
 if (memberWithSameEmail != null && memberWithSameEmail.Id != id)
@@ -100,7 +100,7 @@ if (memberWithSameEmail != null && memberWithSameEmail.Id != id)
     throw new InvalidOperationException("A member with this email already exists");
 }`
 
-Bug #14 BookService.cs Line 38
+Bug #14 BookService.cs Line 56
 No validation check for empty ISBN line
 Fix: Add `if (string.IsNullOrWhiteSpace(book.ISBN))
 {
@@ -114,19 +114,15 @@ Fix: `if (book.PublishedYear <= 0 || book.PublishedYear > DateTime.Now.Year)
     throw new ArgumentException("Published year is invalid");
 }`
 
-Bug #16 BookService.cs Line 
+Bug #16 BookService.cs Line 45
 No validation for AvailableCopies
 Fix: Add `if (book.AvailableCopies < 0)
 {
     throw new ArgumentException("Available copies cannot be negative");
 }`
 
- Bug #17 MemberService.cs Line 32   MAYBE NOT A BUG
-Missing valid email validation to check for valid email format
-Fix: `if (!new System.ComponentModel.DataAnnotations.EmailAddressAttribute().IsValid(member.Email))
-{
-    throw new ArgumentException("Member email is invalid");
-}`
+ Bug #17 Program.cs Line 9   had singleton instead of scoped
+Fix: `builder.Services.AddScoped<IMemberRepository, MemberRepository>(); builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();`
 
 Bug #18 MemberService.cs Line 55
 No validation for name when updating a member, allowing for empty strings
@@ -147,7 +143,7 @@ if (!new System.ComponentModel.DataAnnotations.EmailAddressAttribute().IsValid(m
     throw new ArgumentException("Member email is invalid");
 }`
 
- Bug #20 LibraryController.cs Line 18
+ Bug #20 LibraryController.cs Line 24
 CreatedAtAction would be a better return for a 201 Created code
 Fix: Add `return CreatedAtAction(
     nameof(GetMemberTransactions),
@@ -155,6 +151,6 @@ Fix: Add `return CreatedAtAction(
     transaction
 );`
 
-Bug #21 LibraryController.cs Line 36
+Bug #21 LibraryController.cs Line 42
 Change http method from POST to PUT so not update an existing transaction.
 Fix: [HttpPut("return/{transactionId}")]
